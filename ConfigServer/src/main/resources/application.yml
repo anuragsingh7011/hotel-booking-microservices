@@ -11,5 +11,5 @@ spring:
         git:
           uri: https://github.com/anuragsingh7011/hotel-booking-microservices.git
           default-label: main
-          search-paths: /config-data
+          search-paths: config-data
           clone-on-start: true

@@ -3,17 +3,16 @@ package com.radisson.user.kafka.service;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
-@Service
-public class kafkaProducer {
-	
-	KafkaTemplate<String , String> kafkaTemplate;
-	
-	public void messageProducer(String _topic ,String _message) {
-		kafkaTemplate.send(_topic, _message);
-	}
+import lombok.RequiredArgsConstructor;
 
-	public void producerMessage(String string, String message) {
-		// TODO Auto-generated method stub
-		
-	}
+@Service
+@RequiredArgsConstructor
+public class KafkaProducer {
+
+    private final KafkaTemplate<String, String> kafkaTemplate;
+
+    public void producerMessage(String topic, String message) {
+        kafkaTemplate.send(topic, message);
+        System.out.println("Message sent to topic: " + topic);
+    }
 }

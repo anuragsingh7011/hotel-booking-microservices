@@ -23,7 +23,7 @@ public class UserController {
 	
 	private final UserService userService;
 	
-	@PostMapping
+	@PostMapping("/profile")
 	public ResponseEntity<UserResponseDTO> createUser(@Valid @RequestBody UserRequestDTO requestDTO){
 		UserResponseDTO responseDTO=userService.createUser(requestDTO);
 		return new ResponseEntity<UserResponseDTO>(responseDTO, HttpStatus.CREATED);

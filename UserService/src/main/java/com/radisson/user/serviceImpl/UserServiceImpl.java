@@ -2,7 +2,6 @@ package com.radisson.user.serviceImpl;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -11,7 +10,7 @@ import com.radisson.user.dto.UserRequestDTO;
 import com.radisson.user.dto.UserResponseDTO;
 import com.radisson.user.entities.User;
 import com.radisson.user.exception.ResourceNotFoundException;
-import com.radisson.user.kafka.service.kafkaProducer;
+import com.radisson.user.kafka.service.KafkaProducer;
 import com.radisson.user.repository.UserRepository;
 import com.radisson.user.service.UserService;
 
@@ -22,9 +21,7 @@ import lombok.RequiredArgsConstructor;
 public class UserServiceImpl implements UserService {
 
 	private final UserRepository userRepository;
-	
-	@Autowired
-	kafkaProducer kafkaProducer;
+	private final KafkaProducer kafkaProducer;
 	
 	@Override
 	public UserResponseDTO createUser(UserRequestDTO requestDTO) {

@@ -32,8 +32,21 @@ public class UserServiceImpl implements UserService {
 
 		System.out.println(" JSON message sending to Kafka ::: " + message);
 		// send message to kafka
-		kafkaProducer.producerMessage("user-created", message);
+		int partitionCount = 4;
 
+		for (int i = 0; i < 1000; i++) {
+
+		    UserRequestDTO newDto = UserRequestDTO.builder()
+		            .name(requestDTO.getName() + i)
+		            .email("user" + i + "@gmail.com")
+		            .phoneNo(900L + i)
+		            .address(requestDTO.getAddress())
+		            .build();
+
+		    int partition = i % partitionCount;
+
+		    kafkaProducer.producerMessage("user-profile1",partition,String.valueOf(newDto.getPhoneNo()),newDto);
+		}
 		System.out.println(" MESSAGE SENT to KAFKA.....");
 		
 		return mapToDTO(userEntity);

@@ -29,7 +29,7 @@ spring:
       missing-topics-fatal: false
 
 server:
-  port: 8084
+  port: 0
 
 eureka:
   client:
